@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="botonInicio">
+        <item name="android:background">@color/blue</item>
+    </style>
+
+    <style name="fondoApp">
+        <item name="android:background">@color/black</item>
+    </style>
+</resources>
