@@ -17,37 +17,44 @@
         android:layout_gravity="center"
         android:layout_marginTop="200px"
         android:layout_marginBottom="150px"
-        app:srcCompat="@drawable/logo" />
+        android:background="@drawable/style_img_logo"
+        android:src="@drawable/logo" />
 
     <TextView
         android:id="@+id/textUsuario"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="150px"
+        android:layout_gravity="center"
         android:textSize="80px"
-        android:text="Usuario"
-
-        />
+        android:text="Usuario" />
 
     <EditText
         android:id="@+id/editTextText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:width="700px"
+        android:height="150px"
+        android:layout_gravity="center"
         android:ems="10"
         android:inputType="text"
         android:text=""
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/textContraseña"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="150px"
+        android:layout_gravity="center"
         android:textSize="80px"
         android:text="Contraseña" />
 
     <EditText
         android:id="@+id/editTextText2"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:width="700px"
+        android:height="150px"
+        android:layout_gravity="center"
         android:ems="10"
         android:inputType="textPassword"
         android:text=""
@@ -55,9 +62,11 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:width="500px"
         android:layout_marginTop="30px"
-        android:text="Button" />
+        android:text="Inicio sesion" />
 
 </LinearLayout>
