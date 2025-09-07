@@ -13,7 +13,7 @@ size  Tamaño fijo
     <!--Fondo imagen-->
     <solid android:color="@color/white"/>
     <!--Borde imagen-->
-    <stroke android:width="3dp" android:color="@color/cajas">
+    <stroke android:width="3dp" android:color="@color/cajas"/>
     <!--Esquinas redondeadas -->
     <corners android:radius="50dp"/>
     <!--Padding-->
