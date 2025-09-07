@@ -32,7 +32,7 @@
         android:text="Cuevas Halima" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/correo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="300dp"
@@ -47,7 +47,7 @@
         android:textColor="@color/cajas" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="300dp"

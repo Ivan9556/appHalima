@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,40 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
+import retrofit2.http.GET;
+
+
 public class MainActivity extends AppCompatActivity {
+    //Clases
+    public class Usuario{
+        private String correoElectronico;
+        private String password;
+
+        public Usuario(String correoElectronico, String password) {
+            this.correoElectronico = correoElectronico;
+            this.password = password;
+        }
+    }
+
+    public class Certificado{
+        private String token;
+
+        public String getToken() {
+            return token;
+        }
+    }
+    //Interfaces
+    public interface Servicios{
+        @POST("login")
+        Call<Certificado> login(@Body Usuario usuario);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +58,32 @@ public class MainActivity extends AppCompatActivity {
             return insets;
 
         });
+        //Variables
         Button inicioSesion = findViewById(R.id.incio);
+        //Formulario
+        EditText etcorreo = findViewById(R.id.correo);
+        EditText etpass = findViewById(R.id.pass);
+        /*Obtenemos el texto de las varibles del form:
+        .getText() devuelve un Editable.
+        .toString() lo convierte en String.
+        .trim() elimina espacios en blanco al inicio/final
+        */
+        String correo = etcorreo.getText().toString().trim();
+        String pass = etpass.getText().toString().trim();
 
+        //Instancia Retrofit
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.141:8000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        //Instancia interface
+        Servicios servicio = retrofit.create(Servicios.class);
+
+        //Hacer login
+        Usuario usurio = new Usuario(correo, pass);
+
+
+        /*  METODO ONCLICK BOTON INICIO
         inicioSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,9 +91,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        */
+
+
 
 
     }
 
-
 }
+
