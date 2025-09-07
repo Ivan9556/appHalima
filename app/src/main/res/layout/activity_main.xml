@@ -6,67 +6,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
     style="@style/fondoApp"
-    >
+    tools:context=".MainActivity">
 
-    <ImageView
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/logo"
-        android:layout_width="140dp"
-        android:layout_height="300px"
+        android:layout_width="500px"
+        android:layout_height="400px"
         android:layout_gravity="center"
-        android:layout_marginTop="200px"
-        android:layout_marginBottom="150px"
-        android:background="@drawable/style_img_logo"
-        android:src="@drawable/logo" />
+        android:layout_marginTop="100dp"
+        android:src="@drawable/LogoSinFondo"
+        app:shapeAppearanceOverlay="@style/imgInicio"
+        />
 
     <TextView
-        android:id="@+id/textUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="150px"
+        android:id="@+id/titulo"
         android:layout_gravity="center"
-        android:textSize="80px"
-        android:text="Usuario" />
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textSize="40sp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/texto"
+        android:fontFamily="cursive"
+        android:text="Cuevas Halima" />
 
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="700px"
-        android:height="150px"
+        android:width="300dp"
+        android:height="200dp"
         android:layout_gravity="center"
         android:ems="10"
+        android:layout_margin="10dp"
         android:inputType="text"
+        android:hint="Correo electronico"
+        android:background="@drawable/style_Cajas"
         android:text=""
-        android:textColor="@color/white" />
-
-    <TextView
-        android:id="@+id/textContraseña"
-        android:layout_width="wrap_content"
-        android:layout_height="150px"
-        android:layout_gravity="center"
-        android:textSize="80px"
-        android:text="Contraseña" />
+        android:textColor="@color/cajas" />
 
     <EditText
         android:id="@+id/editTextText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="700px"
-        android:height="150px"
+        android:width="300dp"
+        android:height="200dp"
         android:layout_gravity="center"
         android:ems="10"
+        android:layout_margin="10dp"
+        android:background="@drawable/style_Cajas"
         android:inputType="textPassword"
+        android:hint="Contraseña"
         android:text=""
         android:textColor="@color/blue"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:width="500px"
-        android:layout_marginTop="30px"
+        android:layout_marginTop="15dp"
+        android:width="200dp"
+        app:backgroundTint="@color/cajas"
+        android:textColor="@color/texto"
         android:text="Inicio sesion" />
 
 </LinearLayout>
+
+

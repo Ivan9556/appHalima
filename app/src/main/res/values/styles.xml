@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="botonInicio">
-        <item name="android:background">@color/blue</item>
+        <item name="android:background">@color/texto</item>
     </style>
 
     <style name="fondoApp">
-        <item name="android:background">@color/black</item>
+        <item name="android:background">@color/blue</item>
     </style>
+
+    <style name="imgInicio">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="android:layout_margin">70dp</item>
+    </style>
+
 </resources>
