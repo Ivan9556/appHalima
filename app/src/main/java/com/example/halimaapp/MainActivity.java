@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //Interfaces
     public interface Servicios{
-        @POST("login")
+        @POST("/login")
         Call<Certificado> login(@Body Usuario usuario);
 
     }
@@ -73,25 +76,39 @@ public class MainActivity extends AppCompatActivity {
 
         //Instancia Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.141:8000/")
+                //URL Windows
+               // .baseUrl("http://192.168.1.141:8000/")
+                //URL Linux
+                .baseUrl("http://192.168.1.145:8000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         //Instancia interface
         Servicios servicio = retrofit.create(Servicios.class);
 
         //Hacer login
-        Usuario usurio = new Usuario(correo, pass);
-
-
-        /*  METODO ONCLICK BOTON INICIO
         inicioSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-                startActivity(intent);
+                Usuario usurio = new Usuario(correo, pass);
+                servicio.login(usurio).enqueue(new Callback<Certificado>() {
+                    @Override
+                    public void onResponse(Call<Certificado> call, Response<Certificado> response) {
+                        if(response.isSuccessful() && response.body() != null){
+                            String token = response.body().getToken();
+                            Toast.makeText(getApplicationContext(), "Has iniciado sesion", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Certificado> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Error de inicio", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
-        */
+
 
 
 
