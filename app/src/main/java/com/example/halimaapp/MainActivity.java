@@ -98,23 +98,23 @@ public class MainActivity extends AppCompatActivity {
                 servicio.login(usuario).enqueue(new Callback<Certificado>() {
                     @Override
                     public void onResponse(Call<Certificado> call, Response<Certificado> response) {
-                        Toast.makeText(getApplicationContext(), "Has iniciado sesion", Toast.LENGTH_SHORT).show();
-                        /*
+
                         if(response.isSuccessful() && response.body() != null){
+                            Toast.makeText(getApplicationContext(), "Has iniciado sesion", Toast.LENGTH_SHORT).show();
                             String token = response.body().getToken();
-                            Toast.makeText(getApplicationContext(),"El token es:" + token, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                             startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                         }
-                        */
+
                     }
 
 
                     @Override
                     public void onFailure(Call<Certificado> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), correo, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getApplicationContext(), pass, Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(), "Error de inicio", Toast.LENGTH_SHORT).show();
                     }
                 });
