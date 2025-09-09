@@ -106,14 +106,18 @@ public class MainActivity extends AppCompatActivity {
                         public void onResponse(Call<Certificado> call, Response<Certificado> response) {
 
                             if(response.isSuccessful() && response.body() != null){
-                                Toast.makeText(getApplicationContext(), "Has iniciado sesion", Toast.LENGTH_SHORT).show();
+                            //    Toast.makeText(getApplicationContext(), "Has iniciado sesion", Toast.LENGTH_SHORT).show();
                                 String token = response.body().getToken();
-                                Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
+                                if(token.isEmpty()){
+                                    Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Usuario y contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                                }
 
-                                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-                                startActivity(intent);
                             } else {
-                                Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "No se ha establecido conexion", Toast.LENGTH_SHORT).show();
                             }
 
                         }
