@@ -81,50 +81,57 @@ public class MainActivity extends AppCompatActivity {
                 //Variables
                 String correo = etcorreo.getText().toString();
                 String pass = etpass.getText().toString();
-                Usuario usuario = new Usuario(correo, pass);
 
-                //Instancia Retrofit
-                Retrofit retrofit = new Retrofit.Builder()
-                        //URL Windows
-                        .baseUrl("http://192.168.1.141:8000/")
-                        //URL Linux
-                        // .baseUrl("http://192.168.1.145:8000/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                //Instancia interface
-                Servicios servicio = retrofit.create(Servicios.class);
+                //Comprobamos si el formulario tiene algun valor
+                if(!correo.isEmpty() && !pass.isEmpty()){
 
-                //Servicios
-                servicio.login(usuario).enqueue(new Callback<Certificado>() {
-                    @Override
-                    public void onResponse(Call<Certificado> call, Response<Certificado> response) {
+                    //Instancia Usuarioqx
+                    Usuario usuario = new Usuario(correo, pass);
 
-                        if(response.isSuccessful() && response.body() != null){
-                            Toast.makeText(getApplicationContext(), "Has iniciado sesion", Toast.LENGTH_SHORT).show();
-                            String token = response.body().getToken();
-                            Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
+                    //Instancia Retrofit
+                    Retrofit retrofit = new Retrofit.Builder()
+                            //URL Windows
+                            //.baseUrl("http://192.168.1.141:8000/")
+                            //URL Linux
+                            .baseUrl("http://192.168.1.145:8000/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
 
-                            Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                    //Instancia interface
+                    Servicios servicio = retrofit.create(Servicios.class);
+
+                    //Servicios
+                    servicio.login(usuario).enqueue(new Callback<Certificado>() {
+                        @Override
+                        public void onResponse(Call<Certificado> call, Response<Certificado> response) {
+
+                            if(response.isSuccessful() && response.body() != null){
+                                Toast.makeText(getApplicationContext(), "Has iniciado sesion", Toast.LENGTH_SHORT).show();
+                                String token = response.body().getToken();
+                                Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
 
-                    }
 
+                        @Override
+                        public void onFailure(Call<Certificado> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), "Error de inicio", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else{
+                    Toast.makeText(getApplicationContext(),"No has introducido datos", Toast.LENGTH_SHORT).show();
+                }
 
-                    @Override
-                    public void onFailure(Call<Certificado> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Error de inicio", Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
 
 
         });
-
-
-
 
     }
 
