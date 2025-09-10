@@ -2,6 +2,7 @@ package com.example.halimaapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
 
         });
-
         //Variable Boton inico
         Button inicioSesion = findViewById(R.id.incio);
 
@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 */
 
                 //Variables
-                String correo = etcorreo.getText().toString();
-                String pass = etpass.getText().toString();
+                String correo = etcorreo.getText().toString().trim();
+                String pass = etpass.getText().toString().trim();
 
                 //Comprobamos si el formulario tiene algun valor
                 if(!correo.isEmpty() && !pass.isEmpty()){
@@ -106,23 +106,18 @@ public class MainActivity extends AppCompatActivity {
                         public void onResponse(Call<Certificado> call, Response<Certificado> response) {
 
                             if(response.isSuccessful() && response.body() != null){
-                            //    Toast.makeText(getApplicationContext(), "Has iniciado sesion", Toast.LENGTH_SHORT).show();
                                 String token = response.body().getToken();
-                                if(token.isEmpty()){
+                                if(token != null){
+                                    Toast.makeText(getApplicationContext(),"Has iniciado sesion", Toast.LENGTH_SHORT).show();
                                     Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                                     startActivity(intent);
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Usuario y contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(getApplicationContext(), "No se ha establecido conexion", Toast.LENGTH_SHORT).show();
                                 }
-
-                            } else {
-                                Toast.makeText(getApplicationContext(), "No se ha establecido conexion", Toast.LENGTH_SHORT).show();
                             }
 
                         }
-
-
                         @Override
                         public void onFailure(Call<Certificado> call, Throwable t) {
                             Toast.makeText(getApplicationContext(), "Error de inicio", Toast.LENGTH_SHORT).show();
