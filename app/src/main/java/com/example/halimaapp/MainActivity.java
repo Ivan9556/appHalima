@@ -43,7 +43,13 @@ public class MainActivity extends AppCompatActivity {
             return token;
         }
     }
-    //Interfaces
+    /* Interfaces
+    Definimos las solicitudes HTTP, con los endpoint y el tipo de request (tipo de petición)
+    Añadimos como párameto el objeto usuario el cual se envia en formato JSON
+    El metodo devuelve un Call<Certificado>, representa una llamada HTTP (respuesta) la cual se
+    deserializa en formato JSON a un objeto Certificado
+     */
+
     public interface Servicios{
         @POST("login")
         Call<Certificado> login(@Body Usuario usuario);
@@ -68,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
         inicioSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Formulario
+
+                //Variables EdiText
                 EditText etcorreo = findViewById(R.id.correo);
                 EditText etpass = findViewById(R.id.pass);
 
@@ -78,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 .trim() elimina espacios en blanco al inicio/final
                 */
 
-                //Variables
+                //Variables String
                 String correo = etcorreo.getText().toString().trim();
                 String pass = etpass.getText().toString().trim();
 
@@ -93,18 +100,27 @@ public class MainActivity extends AppCompatActivity {
                             //URL Windows
                             //.baseUrl("http://192.168.1.141:8000/")
                             //URL Linux
-                            .baseUrl("http://192.168.1.145:8000/")
+                            //.baseUrl("http://192.168.1.145:8000/")
+                            //Url Movil
+                            .baseUrl("http://10.220.67.31:8000/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
-                    //Instancia interface
+                    //Instancia interface para realizar llamadas
                     Servicios servicio = retrofit.create(Servicios.class);
 
-                    //Servicios
-                    servicio.login(usuario).enqueue(new Callback<Certificado>() {
-                        @Override
-                        public void onResponse(Call<Certificado> call, Response<Certificado> response) {
+                    /*
+                    Llamamos al Servicio y utilizamos ".enqueue" para ejecutar la llamada de forma
+                    asíncrona (un hilo separado) para no bloquear la interfaz del usuario
+                     */
 
+                    servicio.login(usuario).enqueue(new Callback<Certificado>() {
+                        @Override //Respuesta del servidor
+                        public void onResponse(Call<Certificado> call, Response<Certificado> response) {
+                            /*
+                            response.isSuccessful(), devuelve true si el código HTTP está en el rango 200–299.
+                            response.body(), contiene el objeto Certificado deserializado desde JSON.
+                             */
                             if(response.isSuccessful() && response.body() != null){
                                 String token = response.body().getToken();
                                 if(token != null){
@@ -118,9 +134,9 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                         }
-                        @Override
+                        @Override //Si no obtenemos respuesta del servidor
                         public void onFailure(Call<Certificado> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(), "Error de inicio", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else{
