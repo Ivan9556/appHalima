@@ -100,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
                             //URL Windows
                             //.baseUrl("http://192.168.1.141:8000/")
                             //URL Linux
-                            //.baseUrl("http://192.168.1.145:8000/")
+                            .baseUrl("http://192.168.1.145:8000/")
                             //Url Movil
-                            .baseUrl("http://10.220.67.31:8000/")
+                            //.baseUrl("http://10.220.67.31:8000/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
