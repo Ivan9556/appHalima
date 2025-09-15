@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/reservaFragment">
+
+    <fragment
+        android:id="@+id/reservaFragment"
+        android:name="com.example.halimaapp.ReservaFragment"
+        android:label="fragment_reserva"
+        tools:layout="@layout/fragment_reserva" />
+</navigation>

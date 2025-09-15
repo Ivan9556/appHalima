@@ -20,7 +20,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_menu);
 
-        Button añadir_reserva = findViewById(R.id.añadir);
+        /*Button añadir_reserva = findViewById(R.id.añadir);
 
         añadir_reserva.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,7 +29,7 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        */
     }
 
 }
