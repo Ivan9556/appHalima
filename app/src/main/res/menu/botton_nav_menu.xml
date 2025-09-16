@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="usuario" android:title="Usuario" />
-    <item android:id="reservas" android:title="Reserva" />
-    <item android:id="mensajes" android:title="Mensajes" />
-    <item android:id="otro" android:title="Otro" />
+    <item android:id="@+id/usuarioFragment"
+        android:title="@string/title_usuario"
+        />
+    <item android:id="@+id/reservaFragment"
+        android:title="@string/title_reservas"
+        />
+    <item android:id="@+id/mensajesFragment"
+        android:title="@string/title_mensajes" />
 </menu>
