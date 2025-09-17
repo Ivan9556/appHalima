@@ -13,6 +13,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MenuActivity extends AppCompatActivity {
 
     @Override
@@ -20,16 +22,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_menu);
 
-        /*Button añadir_reserva = findViewById(R.id.añadir);
 
-        añadir_reserva.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MenuActivity.this, NuevaReservaActivity.class);
-                startActivity(intent);
-            }
-        });
-        */
     }
 
 }
