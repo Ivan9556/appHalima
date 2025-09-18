@@ -7,6 +7,10 @@
     style="@style/fondoApp"
     >
 
+    <!-- FragmentHost
+    El atributo android:name = Indica a Android que va a ser una navHostFragment,
+    fragmento de la libreria Navegation, encargado de pintar la ventana.
+    -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -20,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-
+    <!--Barra de navegacion-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
@@ -31,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:backgroundTint="@color/cajas"
         />
-
+    <!---->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
