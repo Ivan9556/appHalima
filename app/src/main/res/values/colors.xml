@@ -5,4 +5,5 @@
     <color name="blue">#cbe9e1</color>
     <color name="cajas">#5dbeb1</color>
     <color name="texto">#057075</color>
+    <color name="transparente">#00000000</color>
 </resources>

@@ -44,6 +44,10 @@ public class MenuActivity extends AppCompatActivity {
         binding = ActivityMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot()); //getRoot(): Obtiene la vista
 
+        //Style barra navegacion
+        BottomNavigationView barra = binding.navView;
+        barra.setItemActiveIndicatorEnabled(false); //eliminar indicador
+
         //Barra superior del activity
         MaterialToolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);

@@ -13,5 +13,4 @@
         <item name="cornerSize">50%</item>
         <item name="android:layout_margin">70dp</item>
     </style>
-
 </resources>
