@@ -48,7 +48,7 @@ public class MenuActivity extends AppCompatActivity {
 
         //Recuperamos el token
         token = getIntent().getStringExtra("token_key");
-        Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
 
         //Style barra navegacion
         BottomNavigationView barra = binding.navView;
@@ -76,5 +76,9 @@ public class MenuActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+    }
+
+    public String getToken() {
+        return token;
     }
 }

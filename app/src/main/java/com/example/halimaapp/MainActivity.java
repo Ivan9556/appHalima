@@ -53,7 +53,11 @@ public class MainActivity extends AppCompatActivity {
     public interface Servicios{
         @POST("login")
         Call<Certificado> login(@Body Usuario usuario);
-
+        /*
+        @POST("consultar_reservas"){
+            Call<>
+        }
+        */
     }
 
     @Override
@@ -98,11 +102,11 @@ public class MainActivity extends AppCompatActivity {
                     //Instancia Retrofit
                     Retrofit retrofit = new Retrofit.Builder()
                             //URL Windows
-                            //.baseUrl("http://192.168.1.141:8000/")
+                            .baseUrl("http://192.168.1.141:8000/")
                             //URL Linux
                             //.baseUrl("http://192.168.1.145:8000/")
                             //Url Movil
-                            .baseUrl("http://10.96.183.31:8000/")
+                            //.baseUrl("http://10.96.183.31:8000/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
