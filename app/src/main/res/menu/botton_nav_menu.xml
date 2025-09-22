@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/usuarioFragment"
-        android:icon="@drawable/reserva"
-        android:title="@string/title_usuario"
-        />
+
     <item android:id="@+id/reservaFragment"
         android:icon="@drawable/reserva"
         android:title="@string/title_reservas"
         />
+
+
     <item android:id="@+id/mensajesFragment"
-        android:icon="@drawable/reserva"
+        android:icon="@drawable/mensaje"
         android:title="@string/title_mensajes" />
+
+    <item android:id="@+id/usuarioFragment"
+        android:icon="@drawable/usuario"
+        android:title="@string/title_usuario"
+        />
+
 </menu>

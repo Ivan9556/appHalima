@@ -100,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
                             //URL Windows
                             //.baseUrl("http://192.168.1.141:8000/")
                             //URL Linux
-                            .baseUrl("http://192.168.1.145:8000/")
+                            //.baseUrl("http://192.168.1.145:8000/")
                             //Url Movil
-                            //.baseUrl("http://10.220.67.31:8000/")
+                            .baseUrl("http://10.96.183.31:8000/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
 
@@ -124,10 +124,12 @@ public class MainActivity extends AppCompatActivity {
                             if(response.isSuccessful() && response.body() != null){
                                 String token = response.body().getToken();
                                 if(token != null){
-                                    Toast.makeText(getApplicationContext(),"Has iniciado sesion", Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(getApplicationContext(),"Has iniciado sesion", Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                                    intent.putExtra("token_key", token);
                                     startActivity(intent);
+                                    finish(); //Metodo para no retroceder tras el cambio de Activity
                                 }else {
                                     Toast.makeText(getApplicationContext(), "No se ha establecido conexion", Toast.LENGTH_SHORT).show();
                                 }

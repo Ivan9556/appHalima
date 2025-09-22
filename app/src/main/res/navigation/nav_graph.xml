@@ -3,12 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/usuarioFragment">
-    <fragment
-        android:id="@+id/usuarioFragment"
-        android:name="com.example.halimaapp.UsuarioFragment"
-        android:label="fragment_usuario"
-        tools:layout="@layout/fragment_usuario" />
+    app:startDestination="@id/reservaFragment">
+
     <fragment
         android:id="@+id/reservaFragment"
         android:name="com.example.halimaapp.ReservaFragment"
@@ -19,4 +15,10 @@
         android:name="com.example.halimaapp.MensajesFragment"
         android:label="fragment_mensajes"
         tools:layout="@layout/fragment_mensajes" />
+    <fragment
+        android:id="@+id/usuarioFragment"
+        android:name="com.example.halimaapp.UsuarioFragment"
+        android:label="fragment_usuario"
+        tools:layout="@layout/fragment_usuario" />
+
 </navigation>

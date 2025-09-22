@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,7 @@ public class MenuActivity extends AppCompatActivity {
        representa el activity_menu.xml
      */
     private ActivityMenuBinding binding;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,10 @@ public class MenuActivity extends AppCompatActivity {
          */
         binding = ActivityMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot()); //getRoot(): Obtiene la vista
+
+        //Recuperamos el token
+        token = getIntent().getStringExtra("token_key");
+        Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
 
         //Style barra navegacion
         BottomNavigationView barra = binding.navView;
