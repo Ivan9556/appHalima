@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/reservaFragment"
-        android:name="com.example.halimaapp.ReservaFragment"
+        android:name="com.example.halimaapp.fragments.ReservaFragment"
         android:label="fragment_reserva"
         tools:layout="@layout/fragment_reserva" />
     <fragment
         android:id="@+id/mensajesFragment"
-        android:name="com.example.halimaapp.MensajesFragment"
+        android:name="com.example.halimaapp.fragments.MensajesFragment"
         android:label="fragment_mensajes"
         tools:layout="@layout/fragment_mensajes" />
     <fragment
         android:id="@+id/usuarioFragment"
-        android:name="com.example.halimaapp.UsuarioFragment"
+        android:name="com.example.halimaapp.fragments.UsuarioFragment"
         android:label="fragment_usuario"
         tools:layout="@layout/fragment_usuario" />
 

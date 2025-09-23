@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     style="@style/fondoApp"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
 
     <com.google.android.material.imageview.ShapeableImageView

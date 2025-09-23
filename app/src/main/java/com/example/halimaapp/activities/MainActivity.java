@@ -1,8 +1,7 @@
-package com.example.halimaapp;
+package com.example.halimaapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.halimaapp.R;
+import com.example.halimaapp.models.Certificado;
+import com.example.halimaapp.models.Usuario;
+import com.example.halimaapp.network.Cliente;
+import com.example.halimaapp.network.Servicios;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,41 +30,7 @@ import retrofit2.http.POST;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    //Clases
-    public class Usuario{
-        private String user;
-        private String userpass;
-
-        public Usuario(String user, String userpass) {
-            this.user = user;
-            this.userpass = userpass;
-        }
-    }
-
-    public class Certificado{
-        private String token;
-
-        public String getToken() {
-            return token;
-        }
-    }
-    /* Interfaces
-    Definimos las solicitudes HTTP, con los endpoint y el tipo de request (tipo de petición)
-    Añadimos como párameto el objeto usuario el cual se envia en formato JSON
-    El metodo devuelve un Call<Certificado>, representa una llamada HTTP (respuesta) la cual se
-    deserializa en formato JSON a un objeto Certificado
-     */
-
-    public interface Servicios{
-        @POST("login")
-        Call<Certificado> login(@Body Usuario usuario);
-
-        @POST("consultar_reservas")
-        Call<Certificado>reservas(@Header("Authorizacion") String token);
-
-    }
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,19 +70,9 @@ public class MainActivity extends AppCompatActivity {
                     //Instancia Usuarioqx
                     Usuario usuario = new Usuario(correo, pass);
 
-                    //Instancia Retrofit
-                    Retrofit retrofit = new Retrofit.Builder()
-                            //URL Windows
-                            .baseUrl("http://192.168.1.141:8000/")
-                            //URL Linux
-                            //.baseUrl("http://192.168.1.145:8000/")
-                            //Url Movil
-                            //.baseUrl("http://10.96.183.31:8000/")
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-
                     //Instancia interface para realizar llamadas
-                    Servicios servicio = retrofit.create(Servicios.class);
+                    Cliente Cliente = null;
+                    Servicios servicio = Cliente.getCliente().create(Servicios.class);
 
                     /*
                     Llamamos al Servicio y utilizamos ".enqueue" para ejecutar la llamada de forma
