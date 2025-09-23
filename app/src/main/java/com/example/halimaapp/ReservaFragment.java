@@ -27,8 +27,9 @@ public class ReservaFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentReservaBinding.inflate(inflater, container, false);
         //Token
-        token = ((MenuActivity) getActivity()).getToken();
-        Toast.makeText(getContext(), "el token es: " + token, Toast.LENGTH_SHORT).show();
+        token = "Bearer ((MenuActivity) getActivity()).getToken() ";
+
+
 
         return binding.getRoot();
     }

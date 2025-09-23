@@ -20,6 +20,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 
@@ -53,11 +54,10 @@ public class MainActivity extends AppCompatActivity {
     public interface Servicios{
         @POST("login")
         Call<Certificado> login(@Body Usuario usuario);
-        /*
-        @POST("consultar_reservas"){
-            Call<>
-        }
-        */
+
+        @POST("consultar_reservas")
+        Call<Certificado>reservas(@Header("Authorizacion") String token);
+
     }
 
     @Override
