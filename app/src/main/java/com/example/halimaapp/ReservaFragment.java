@@ -26,8 +26,9 @@ public class ReservaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentReservaBinding.inflate(inflater, container, false);
+
         //Token
-        token = "Bearer ((MenuActivity) getActivity()).getToken() ";
+        token = "Bearer " + ((MenuActivity) getActivity()).getToken();
 
 
 
