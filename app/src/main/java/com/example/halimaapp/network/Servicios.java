@@ -3,6 +3,7 @@ package com.example.halimaapp.network;
 import com.example.halimaapp.models.Certificado;
 import com.example.halimaapp.models.Usuario;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -17,6 +18,10 @@ Añadimos como párameto el objeto usuario el cual se envia en formato JSON
 El metodo devuelve un Call<Certificado>, representa una llamada HTTP (respuesta) la cual se
 deserializa en formato JSON a un objeto Certificado
 
+ResponseBody recibes eel contenido crudo de la respuesta HTTP,
+tal como lo envía el servidor, en formato byte[] o InputStream.
+El endpoint Flask devuelve una lista JSON de reservas, no compatible con
+la estrucutra de Certificado por lo que response.body() devuelve null
 */
 public interface Servicios {
 
@@ -25,5 +30,5 @@ public interface Servicios {
     Call<Certificado> login(@Body Usuario usuario);
 
     @GET("consultar_reservas")
-    Call<Certificado> reservas(@Header("Authorization") String token);
+    Call<ResponseBody> reservas(@Header("Authorization") String token);
 }

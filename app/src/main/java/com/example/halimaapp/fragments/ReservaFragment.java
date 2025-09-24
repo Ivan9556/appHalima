@@ -18,6 +18,9 @@ import com.example.halimaapp.models.Certificado;
 import com.example.halimaapp.network.Cliente;
 import com.example.halimaapp.network.Servicios;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,37 +39,57 @@ public class ReservaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflamos la vista del fragment usando ViewBinding
         binding = FragmentReservaBinding.inflate(inflater, container, false);
 
+        /*
+        Instanciamos la interfaz de servicios de Retrofit
+        cliente.getCliente()' devuelve el Retrofit configurado con la base URL y Gson
+        create(Servicios.class)' devuelve un objeto que implementa la interfaz Servicios
+        */
 
-        //Instanciamos servicios sobre el cliente
         servicios = cliente.getCliente().create(Servicios.class);
 
-        //Token
+        /*
+         Preparamos el token de autorización
+         Obtenemos el token guardado en la Activity principal (MenuActivity)
+         y le añadimos "Bearer " como requiere el estándar HTTP Authorization
+        */
+
         token = "Bearer " + ((MenuActivity) getActivity()).getToken();
 
-        //Se añade el token a la llamada
-        Call<Certificado> call = servicios.reservas(token);
+        // Creamos la llamada Retrofit
 
-        //Llamamos al servicio
-        call.enqueue(new Callback<Certificado>() {
+        Call<ResponseBody> call = servicios.reservas(token);
+
+        // Ejecutamos la llamada de forma asíncrona
+        call.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Certificado> call, Response<Certificado> response) {
-                if (response.isSuccessful() && response.body() != null){
-                    Certificado cer = response.body();
-                    Log.d("Los datos son ", cer.getToken());
-                    Toast.makeText(getContext(), "Todo correcto" + cer.getToken() , Toast.LENGTH_SHORT).show();
-                }else{
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                // Se llama si la petición HTTP responde correctamente
+                if(response.isSuccessful() && response.body() != null){
+                    try {
+                        // Obtenemos el JSON como String
+                        String datos = response.body().string();
+                        // Imprimimos en Logcat para depuración
+                        Log.d("Reservas:", datos);
+                    } catch (IOException e){
+                        e.printStackTrace();
+                    }
+                } else {
+                    // Si la respuesta no es exitosa o el body es null
                     Toast.makeText(getContext(), "No hay datos", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<Certificado> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Si no pudo completar la llamada
                 Toast.makeText(getContext(), "No hay respuesta", Toast.LENGTH_SHORT).show();
             }
         });
 
+        // Devolvemos la vista del fragment
         return binding.getRoot();
     }
 
