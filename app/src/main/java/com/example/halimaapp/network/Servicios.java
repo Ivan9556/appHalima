@@ -25,5 +25,5 @@ public interface Servicios {
     Call<Certificado> login(@Body Usuario usuario);
 
     @GET("consultar_reservas")
-    Call<Certificado>reservas(@Header("Authorizacion") String token);
+    Call<Certificado> reservas(@Header("Authorization") String token);
 }

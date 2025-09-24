@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     Usuario usuario = new Usuario(correo, pass);
 
                     //Instancia interface para realizar llamadas
-                    Cliente Cliente = null;
+                    Cliente Cliente = new Cliente();
                     Servicios servicio = Cliente.getCliente().create(Servicios.class);
 
                     /*

@@ -26,7 +26,7 @@ public class ReservaFragment extends Fragment {
 
     private FragmentReservaBinding binding;
     private String token;
-    private Cliente cliente;
+    private Cliente cliente = new Cliente();
     private Servicios servicios;
 
     public ReservaFragment() {
@@ -53,9 +53,9 @@ public class ReservaFragment extends Fragment {
             @Override
             public void onResponse(Call<Certificado> call, Response<Certificado> response) {
                 if (response.isSuccessful() && response.body() != null){
-                    String datos = response.body().toString();
-                    Log.d("Los datos son ", datos);
-                    Toast.makeText(getContext(), "Todo correcto", Toast.LENGTH_SHORT).show();
+                    Certificado cer = response.body();
+                    Log.d("Los datos son ", cer.getToken());
+                    Toast.makeText(getContext(), "Todo correcto" + cer.getToken() , Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getContext(), "No hay datos", Toast.LENGTH_SHORT).show();
                 }
@@ -63,7 +63,7 @@ public class ReservaFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Certificado> call, Throwable t) {
-
+                Toast.makeText(getContext(), "No hay respuesta", Toast.LENGTH_SHORT).show();
             }
         });
 
