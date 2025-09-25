@@ -89,8 +89,6 @@ public class MainActivity extends AppCompatActivity {
                             if(response.isSuccessful() && response.body() != null){
                                 String token = response.body().getToken();
                                 if(token != null){
-                                   // Toast.makeText(getApplicationContext(),"Has iniciado sesion", Toast.LENGTH_SHORT).show();
-                                   // Toast.makeText(getApplicationContext(),"El token es: " + token, Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                                     intent.putExtra("token_key", token);
                                     startActivity(intent);

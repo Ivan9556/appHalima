@@ -13,18 +13,18 @@ import retrofit2.http.POST;
 /*
 Interfaces
 
-Definimos las solicitudes HTTP, con los endpoint y el tipo de request (tipo de petición)
-Añadimos como párameto el objeto usuario el cual se envia en formato JSON
-El metodo devuelve un Call<Certificado>, representa una llamada HTTP (respuesta) la cual se
-deserializa en formato JSON a un objeto Certificado
+Definimos las solicitudes HTTP con sus endpoints y el tipo de petición (request).
+Añadimos como parámetro el objeto Usuario, el cual se envía en formato JSON.
+El metodo devuelve un Call<Certificado>, que representa una llamada HTTP cuya
+respuesta se deserializa automáticamente a un objeto Certificado en formato JSON.
 
-ResponseBody recibes eel contenido crudo de la respuesta HTTP,
-tal como lo envía el servidor, en formato byte[] o InputStream.
-El endpoint Flask devuelve una lista JSON de reservas, no compatible con
-la estrucutra de Certificado por lo que response.body() devuelve null
+ResponseBody permite recibir el contenido de la respuesta HTTP tal como lo envía
+el servidor, en formato byte[] o InputStream.
+En este caso, el endpoint de Flask devuelve una lista JSON de reservas, lo cual
+no es compatible con la estructura de Certificado; por ello, response.body()
+devuelve null si intentamos mapearlo a ese tipo.
 */
 public interface Servicios {
-
 
     @POST("login")
     Call<Certificado> login(@Body Usuario usuario);
@@ -32,3 +32,4 @@ public interface Servicios {
     @GET("consultar_reservas")
     Call<ResponseBody> reservas(@Header("Authorization") String token);
 }
+
