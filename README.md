@@ -1,4 +1,4 @@
-### Halima App ![androide.png](app/src/main/res/drawable/androide.png)
+### Halima App ![androide.png](doc/androide.png)
 
 Este repositorio contiene la aplicación móvil del ecosistema Halima, desarrollada de forma nativa
 para Android utilizando Java. La aplicación permite interactuar con los servicios de gestión 
