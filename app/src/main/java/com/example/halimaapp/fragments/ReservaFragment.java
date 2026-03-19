@@ -92,14 +92,24 @@ public class ReservaFragment extends Fragment {
                 //Nos ayuda a que mientras las API carga, la app no crashee
                 if (!isAdded() || binding == null) return;
 
-                // Se llama si la petición HTTP responde correctamente
+                // Si la petición HTTP responde correctamente
                 if (response.isSuccessful() && response.body() != null) {
                     try {
-                        // Obtenemos el JSON como String
+                        // Obtenemos el JSON del servidor y lo pasamos a String
                         String datos = response.body().string();
+
                         // Convertimos el JSON en una LISTA de tipo "Reserva"
+                        // Creando una instancia de Gson que nos permite serializar (json a Obj)
+                        // o deserializar (obj a json)
                         Gson gson = new Gson();
+
+                        // Creamos una clase anónima ({}) para indicar qué tipo de lista vamos a
+                        // trabajar y qué información va a almacenar (obj tipo Reserva). El
+                        // getType() extrae la información para que GSON pueda leerla
                         Type tipoLista = new TypeToken<ArrayList<Reserva>>(){}.getType();
+
+                        // Creamos la lista y le pasamos por parametros los datos (json) y el
+                        // tipoLista (instrucciones que declaramos anteriormente)
                         ArrayList<Reserva> listaReservas = gson.fromJson(datos, tipoLista);
 
                         //2. Le pasamos esa lista al AdaptadorReservas
