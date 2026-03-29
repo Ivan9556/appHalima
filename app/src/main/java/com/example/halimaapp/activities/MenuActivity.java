@@ -15,13 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {
 
-    /*
-       Uso de ViewBinding:
-       Se usa para reemplazar el clasico findViewById, el cual generar automáticamente una clase por
-       cada layout XML. Una forma segura para acceder a las vistas dentro del Layout. Por lo que
-       representa el activity_menu.xml
-     */
-    private ActivityMenuBinding binding;
     private String token;
 
     @Override
@@ -31,8 +24,13 @@ public class MenuActivity extends AppCompatActivity {
         Metodo inflate: crea en memoria el layout activity_menu.xml y devuelve la instancia
         de la clase generada que contiene todas las vistas layout (mapeamos las vistas en el objeto
         binding).
-         */
-        binding = ActivityMenuBinding.inflate(getLayoutInflater());
+        Uso de ViewBinding:
+        Se usa para reemplazar el clasico findViewById, el cual generar automáticamente una clase por
+        cada layout XML. Una forma segura para acceder a las vistas dentro del Layout. Por lo que
+        representa el activity_menu.xml
+       */
+
+        ActivityMenuBinding binding = ActivityMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot()); //getRoot(): Obtiene la vista
 
         //Recuperamos el token
@@ -47,7 +45,7 @@ public class MenuActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         /*  NavController: Maneja toda la navegación.
-            Primero obtener el host navHostFragment con getSupportFragmentManager() del XML,nreferenciado con findFragmentById()
+            Primero obtener el host navHostFragment con getSupportFragmentManager() del XML, referenciado con findFragmentById()
             para representar los distintos fragments.
             getNavController(): Devuelve el navController asociado a NavHostFragment.
         */

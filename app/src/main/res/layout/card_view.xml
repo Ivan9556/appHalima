@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/card_view">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -14,20 +15,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textNom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Nombre reserva" />
+                android:text="Nombre reserva"/>
             <TextView
                 android:id="@+id/textApe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Apellidos reserva" />
+                android:text="Apellidos reserva"/>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
