@@ -64,6 +64,14 @@ public class MenuActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+    @Override // Sobrescribir el metodo "onSupportNavigateUp()" para darle funcionalidad a Toolbar
+    public boolean onSupportNavigateUp(){
+        //Buscamos el controlador de muevo
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_container);
+        NavController navController = navHostFragment.getNavController();
+        return navController.navigateUp() || super.onSupportNavigateUp();
+    }
     public String getToken() {
         return token;
     }
