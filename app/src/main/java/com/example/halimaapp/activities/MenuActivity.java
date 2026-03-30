@@ -70,6 +70,7 @@ public class MenuActivity extends AppCompatActivity {
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_container);
         NavController navController = navHostFragment.getNavController();
+        // Retrona la funcion de navegar paara attras solo a los fragments no principales.
         return navController.navigateUp() || super.onSupportNavigateUp();
     }
     public String getToken() {
