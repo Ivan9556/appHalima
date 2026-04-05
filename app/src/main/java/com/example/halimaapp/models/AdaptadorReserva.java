@@ -61,25 +61,13 @@ public class AdaptadorReserva extends RecyclerView.Adapter<AdaptadorReserva.View
         holder.itemView.setOnClickListener(v -> {
             Toast.makeText(v.getContext(), "Abriendo reserva de: "+ n_reserva.getNom(),
                     Toast.LENGTH_SHORT).show();
-
-            // Bloque para saltar al Fragment "detalle"
+            
 
             // Buscamos el controlador de navegación desde la vista (v)
             NavController navController = Navigation.findNavController(v);
             // Usamos el ID de la acción que ya tienes definida en tu XML (nav_graph)
             navController.navigate(R.id.action_reservaFragment_to_detail_view2);
 
-
-            /* Obtenemos el activity que contiene la logica
-            AppCompatActivity activity = (MenuActivity) v.getContext();
-            // Creamos la instancia
-            detailCardFragment dcf = new detailCardFragment();
-            // Ejecutamos la transaccion
-            activity.getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.activity_menu, dcf)
-                    .addToBackStack(null) //para poder volver atrás
-                    .commit();
-            */
 
         });
     }
