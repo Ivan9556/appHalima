@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -13,10 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.halimaapp.R;
 import com.example.halimaapp.activities.MenuActivity;
 import com.example.halimaapp.databinding.FragmentReservaBinding;
 import com.example.halimaapp.models.AdaptadorReserva;
 import com.example.halimaapp.models.Reserva;
+import com.example.halimaapp.models.ShareViewModel;
 import com.example.halimaapp.network.Cliente;
 import com.example.halimaapp.network.Servicios;
 import com.google.gson.Gson;
@@ -35,6 +40,8 @@ public class ReservaFragment extends Fragment {
 
     private FragmentReservaBinding binding;
     private Servicios servicios;
+    private ShareViewModel svm;
+    private NavController navController;
 
     public ReservaFragment() {
         // Required empty public constructor
@@ -68,6 +75,9 @@ public class ReservaFragment extends Fragment {
         Cliente cliente = new Cliente();
         servicios = cliente.getCliente().create(Servicios.class);
 
+        svm = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
+        navController = Navigation.findNavController(view);
+
         /*
          Preparamos el token de autorización
          Obtenemos el token guardado en la Activity principal (MenuActivity)
@@ -83,6 +93,7 @@ public class ReservaFragment extends Fragment {
     //Metodo realizar peticiones
     private void cargaReservas(String token) {
         Call<ResponseBody> call = servicios.reservas(token);
+
 
         // Ejecutamos la llamada de forma asíncrona
         call.enqueue(new Callback<ResponseBody>() {
@@ -122,6 +133,14 @@ public class ReservaFragment extends Fragment {
                         // Por ultimo indicamos que se comporte como un lista vertical
                         binding.recyclerViewReservas.setLayoutManager(new LinearLayoutManager
                                 (getContext()));
+
+                        adaptador.setOnclickListerner(reserva -> {
+                            svm.objectSelect(reserva);
+                            if (navController != null){
+                                navController.navigate(R.id.action_reservaFragment_to_detail_view);
+                            }
+                        });
+
 
                         // Imprimimos en Logcat para depuración
                         Log.d("Reservas:", datos);

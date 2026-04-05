@@ -1,55 +1,113 @@
 package com.example.halimaapp.models;
 
-import com.google.gson.annotations.SerializedName;
-
-import kotlinx.serialization.Serializable;
-
 public class  Reserva {
-    // @SerializedName le dice a GSON: "nombre" del JSON va a esta variable
-    private String id;
+
+    /* @SerializedName le dice a GSON: "nombre" del JSON va a esta variable
     @SerializedName("nombre")
     private String nom;
     @SerializedName("apellidos")
     private String ape;
+    */
+
+    private String nombre,
+            apellidos,
+            fecha_entrada,
+            fecha_salida,
+            numero_adultos,
+            numero_ninos,
+            telefono,
+            correo,
+            precio_reserva;
+
     public Reserva() {
     }
 
-    public Reserva(String id, String name, String ape) {
-        this.id = id;
-        this.nom = name;
-        this.ape= ape;
+    public Reserva(String nombre, String apellidos, String fecha_entrada, String fecha_salida,
+                   String numero_adultos, String numero_ninos, String telefono, String corrio,
+                   String precio_reserva) {
+
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.fecha_entrada = fecha_entrada;
+        this.fecha_salida = fecha_salida;
+        this.numero_adultos = numero_adultos;
+        this.numero_ninos = numero_ninos;
+        this.telefono = telefono;
+        this.correo = corrio;
+        this.precio_reserva = precio_reserva;
     }
 
-    public String getId() {
-        return id;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getNom() {
-        return nom;
+    public String getFecha_entrada() {
+        return fecha_entrada;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setFecha_entrada(String fecha_entrada) {
+        this.fecha_entrada = fecha_entrada;
     }
 
-    public String getApe() {
-        return ape;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApe(String ape) {
-        this.ape = ape;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-    @Override
-    public String toString() {
-        return "Reserva{" +
-                "id='" + id + '\'' +
-                ", nom='" + nom + '\'' +
-                ", ape='" + ape + '\'' +
-                '}';
+    public String getFecha_salida() {
+        return fecha_salida;
     }
+
+    public void setFecha_salida(String fecha_salida) {
+        this.fecha_salida = fecha_salida;
+    }
+
+    public String getNumero_adultos() {
+        return numero_adultos;
+    }
+
+    public void setNumero_adultos(String numero_adultos) {
+        this.numero_adultos = numero_adultos;
+    }
+
+    public String getNumero_ninos() {
+        return numero_ninos;
+    }
+
+    public void setNumero_ninos(String numero_ninos) {
+        this.numero_ninos = numero_ninos;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getPrecio_reserva() {
+        return precio_reserva;
+    }
+
+    public void setPrecio_reserva(String precio_reserva) {
+        this.precio_reserva = precio_reserva;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+
 }

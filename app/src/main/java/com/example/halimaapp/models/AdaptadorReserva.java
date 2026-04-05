@@ -26,6 +26,7 @@ public class AdaptadorReserva extends RecyclerView.Adapter<AdaptadorReserva.View
 
     // 2. Variable de la clase, lista de objetos tipo "Cliente" que crea el JSON
     private final List<Reserva> listaReservas;
+    private OnclickListener listener;
 
     // 3. El constructor, lo usamos para recibir la lista del Fragment
     public AdaptadorReserva(List<Reserva> lista) {
@@ -54,21 +55,16 @@ public class AdaptadorReserva extends RecyclerView.Adapter<AdaptadorReserva.View
         Reserva n_reserva = listaReservas.get(position);
 
         // Usamos metodo get para obtener la info en los TextViews
-        holder.textNom.setText(n_reserva.getNom());
-        holder.textApe.setText(n_reserva.getApe());
+        holder.textNom.setText(n_reserva.getNombre());
+        holder.textApe.setText(n_reserva.getApellidos());
 
         // 6. Añadimos un evento Click para abrir la reserva
         holder.itemView.setOnClickListener(v -> {
-            Toast.makeText(v.getContext(), "Abriendo reserva de: "+ n_reserva.getNom(),
-                    Toast.LENGTH_SHORT).show();
-            
-
-            // Buscamos el controlador de navegación desde la vista (v)
-            NavController navController = Navigation.findNavController(v);
-            // Usamos el ID de la acción que ya tienes definida en tu XML (nav_graph)
-            navController.navigate(R.id.action_reservaFragment_to_detail_view2);
-
-
+            if (listener != null){
+                listener.intemClick(n_reserva);
+            }else {
+                Toast.makeText(v.getContext(), "No hay click", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -77,6 +73,18 @@ public class AdaptadorReserva extends RecyclerView.Adapter<AdaptadorReserva.View
     public int getItemCount() {
         return listaReservas.size();
     }
+
+    // Interface escuchador
+    public interface OnclickListener{
+        void intemClick(Reserva reserva);
+    }
+
+    // Metodo para setear el listener desde el fragment
+    public void setOnclickListerner (OnclickListener listener){
+        this.listener = listener;
+    }
+
+
 
     /*
     8. Class ViewHolder, es el contenedor de las vistas de cada capsula. Evita que Android tenga

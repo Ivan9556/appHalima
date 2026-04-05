@@ -11,41 +11,29 @@
         android:label="fragment_reserva"
         tools:layout="@layout/fragment_reserva" >
         <action
-            android:id="@+id/action_reservaFragment_to_usuarioFragment"
-            app:destination="@id/usuarioFragment" />
+            android:id="@+id/action_reservaFragment_to_detail_view"
+            app:destination="@id/detail_view" />
         <action
             android:id="@+id/action_reservaFragment_to_mensajesFragment"
             app:destination="@id/mensajesFragment" />
         <action
-            android:id="@+id/action_reservaFragment_to_detail_view2"
-            app:destination="@id/detail_view" />
+            android:id="@+id/action_reservaFragment_to_usuarioFragment"
+            app:destination="@id/usuarioFragment" />
     </fragment>
     <fragment
         android:id="@+id/mensajesFragment"
         android:name="com.example.halimaapp.fragments.MensajesFragment"
         android:label="fragment_mensajes"
-        tools:layout="@layout/fragment_mensajes" >
-        <action
-            android:id="@+id/action_mensajesFragment_to_usuarioFragment"
-            app:destination="@id/usuarioFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_mensajes" />
     <fragment
         android:id="@+id/usuarioFragment"
         android:name="com.example.halimaapp.fragments.UsuarioFragment"
         android:label="fragment_usuario"
-        tools:layout="@layout/fragment_usuario" >
-        <action
-            android:id="@+id/action_usuarioFragment_to_mensajesFragment3"
-            app:destination="@id/mensajesFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_usuario" />
     <fragment
         android:id="@+id/detail_view"
         android:name="com.example.halimaapp.fragments.detailCardFragment"
         android:label="detail_view"
-        tools:layout="@layout/detail_card_view" >
-        <action
-            android:id="@+id/action_detail_view_to_reservaFragment"
-            app:destination="@id/reservaFragment" />
-    </fragment>
+        tools:layout="@layout/detail_card_view" />
 
 </navigation>
