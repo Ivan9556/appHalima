@@ -24,6 +24,7 @@ import com.example.halimaapp.models.Reserva;
 import com.example.halimaapp.models.ShareViewModel;
 import com.example.halimaapp.network.Cliente;
 import com.example.halimaapp.network.Servicios;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -77,6 +78,8 @@ public class ReservaFragment extends Fragment {
 
         svm = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
         navController = Navigation.findNavController(view);
+        FloatingActionButton nuevo = binding.floatingActionButton;
+
 
         /*
          Preparamos el token de autorización
@@ -88,6 +91,14 @@ public class ReservaFragment extends Fragment {
             // "Bearer " es el esquema de autentificación (estándar HTTP Authentication)
             cargaReservas("Bearer " + token);
         }
+
+        nuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.action_reservaFragment_to_newReserva);
+            }
+        });
+
     }
 
     //Metodo realizar peticiones

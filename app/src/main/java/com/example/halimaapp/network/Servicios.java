@@ -31,5 +31,9 @@ public interface Servicios {
 
     @GET("consultar_reservas")
     Call<ResponseBody> reservas(@Header("Authorization") String token);
+
+    @POST("registrar_reserva")
+    Call<ResponseBody> nueva_reserva(@Header("Authorization") String token, @Body String[] fechas);
+
 }
 

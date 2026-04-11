@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_reservaFragment_to_usuarioFragment"
             app:destination="@id/usuarioFragment" />
+        <action
+            android:id="@+id/action_reservaFragment_to_newReserva"
+            app:destination="@id/newReserva" />
     </fragment>
     <fragment
         android:id="@+id/mensajesFragment"
@@ -35,5 +38,10 @@
         android:name="com.example.halimaapp.fragments.detailCardFragment"
         android:label="detail_view"
         tools:layout="@layout/detail_card_view" />
+    <fragment
+        android:id="@+id/newReserva"
+        android:name="com.example.halimaapp.fragments.newReserva"
+        android:label="Nueva reserva"
+        tools:layout="@layout/new_reserva"/>
 
 </navigation>
