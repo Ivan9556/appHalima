@@ -9,6 +9,8 @@ public class  Reserva {
     private String ape;
     */
 
+
+    private int id;
     private String nombre,
             apellidos,
             fecha_entrada,
@@ -22,10 +24,10 @@ public class  Reserva {
     public Reserva() {
     }
 
-    public Reserva(String nombre, String apellidos, String fecha_entrada, String fecha_salida,
+    public Reserva(int id, String nombre, String apellidos, String fecha_entrada, String fecha_salida,
                    String numero_adultos, String numero_ninos, String telefono, String corrio,
                    String precio_reserva) {
-
+        this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.fecha_entrada = fecha_entrada;
@@ -35,6 +37,14 @@ public class  Reserva {
         this.telefono = telefono;
         this.correo = corrio;
         this.precio_reserva = precio_reserva;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {

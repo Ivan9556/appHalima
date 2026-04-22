@@ -10,7 +10,11 @@
         android:orientation="vertical"
         android:layout_marginTop="80dp"
         >
-
+        <TextView
+            android:id="@+id/id_reserva"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Id Reserva"/>
         <TextView
             android:id="@+id/textNom"
             android:layout_width="wrap_content"
@@ -56,6 +60,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Precio reserva"/>
+        <Button
+            android:id="@+id/boton_borrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Borrar"/>
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

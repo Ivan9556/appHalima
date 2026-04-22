@@ -3,6 +3,7 @@ package com.example.halimaapp.network;
 import com.example.halimaapp.models.Certificado;
 import com.example.halimaapp.models.Usuario;
 
+import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -34,6 +35,9 @@ public interface Servicios {
 
     @POST("registrar_reserva")
     Call<ResponseBody> nueva_reserva(@Header("Authorization") String token, @Body String[] fechas);
+
+    @POST("borrar_reserva")
+    Call<ResponseBody> borrar_reserva(@Header("Authorization") String token, @Body int id);
 
 }
 
