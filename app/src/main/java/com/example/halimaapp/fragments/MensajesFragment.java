@@ -1,66 +1,71 @@
 package com.example.halimaapp.fragments;
 
+
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.example.halimaapp.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MensajesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.example.halimaapp.databinding.FragmentMensajesBinding;
+import com.google.android.material.datepicker.MaterialDatePicker;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 public class MensajesFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentMensajesBinding binding;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public MensajesFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MensajesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MensajesFragment newInstance(String param1, String param2) {
-        MensajesFragment fragment = new MensajesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = FragmentMensajesBinding.inflate(inflater,container,false);
+        return binding.getRoot();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mensajes, container, false);
+        //View.OnClickListener listener = v -> showMaterialDatePicker();
+
+        binding.fSeleccionada.setOnClickListener(v -> showMaterialDatePicker());
+
+
+    }
+    private void showMaterialDatePicker(){
+        // 1. Crear el Builder del selector de fechas
+        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Selecciona una fecha");
+
+        // Opcional: Puedes preseleccionar la fecha de hoy
+        builder.setSelection(MaterialDatePicker.todayInUtcMilliseconds());
+
+        final MaterialDatePicker<Long> materialDatePicker = builder.build();
+
+        // 2. Mostrar el selector (usando el FragmentManager del Fragment)
+        materialDatePicker.show(getParentFragmentManager(), "DATE_PICKER");
+
+        // 3. Configurar qué pasa cuando el usuario pulsa "Aceptar"
+        materialDatePicker.addOnPositiveButtonClickListener(seleccion -> {
+
+            // 'selection' es la fecha en milisegundos (Long)
+            // Convertimos los milisegundos al formato "dd-MM-yyyy"
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            sdf.setTimeZone(TimeZone.getTimeZone("UTC")); // Importante para evitar desfases de horas
+
+            String fechaSeleccionada = sdf.format(new Date(seleccion));
+            // Seteamos el String en el campo usando Binding
+            binding.fSeleccionada.setText(fechaSeleccionada);
+
+        });
+
     }
 }

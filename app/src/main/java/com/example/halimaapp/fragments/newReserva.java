@@ -18,6 +18,12 @@ import com.example.halimaapp.activities.MenuActivity;
 import com.example.halimaapp.databinding.NewReservaBinding;
 import com.example.halimaapp.network.Cliente;
 import com.example.halimaapp.network.Servicios;
+import com.google.android.material.datepicker.MaterialDatePicker;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -50,6 +56,8 @@ public class newReserva extends Fragment {
         servicios = cliente.getCliente().create(Servicios.class);
         Button bt = binding.button;
         navController = Navigation.findNavController(view);
+
+
 
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +103,34 @@ public class newReserva extends Fragment {
                         Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void showMaterialDatePicker(){
+        // 1. Crear el Builder del selector de fechas
+        MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Selecciona una fecha");
+
+        // Opcional: Puedes preseleccionar la fecha de hoy
+        builder.setSelection(MaterialDatePicker.todayInUtcMilliseconds());
+
+        final MaterialDatePicker<Long> materialDatePicker = builder.build();
+
+        // 2. Mostrar el selector (usando el FragmentManager del Fragment)
+        materialDatePicker.show(getParentFragmentManager(), "DATE_PICKER");
+
+        // 3. Configurar qué pasa cuando el usuario pulsa "Aceptar"
+        materialDatePicker.addOnPositiveButtonClickListener(seleccion -> {
+
+            // 'selection' es la fecha en milisegundos (Long)
+            // Convertimos los milisegundos al formato "dd-MM-yyyy"
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            sdf.setTimeZone(TimeZone.getTimeZone("UTC")); // Importante para evitar desfases de horas
+
+            String fechaSeleccionada = sdf.format(new Date(seleccion));
+            // Seteamos el String en el campo usando Binding
+            //binding.fSeleccionada.setText(fechaSeleccionada);
+
+        });
+
     }
 }
 
