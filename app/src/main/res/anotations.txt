@@ -1,4 +1,2 @@
--Introducimos la fecha (nueva reserva) y no vuelve a la ventana de reservas
--Cuando añado la nueva reserva al click en back (botón) vuelve a la ventana donde añado
-las fechas (con las fechas escritas)
--Cuando borro una reserva no vuelve a la ventana resservas
+
+

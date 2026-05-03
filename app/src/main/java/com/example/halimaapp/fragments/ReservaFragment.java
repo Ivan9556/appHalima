@@ -1,5 +1,6 @@
 package com.example.halimaapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.halimaapp.R;
+import com.example.halimaapp.activities.MainActivity;
 import com.example.halimaapp.activities.MenuActivity;
 import com.example.halimaapp.databinding.FragmentReservaBinding;
 import com.example.halimaapp.models.AdaptadorReserva;
@@ -80,6 +82,12 @@ public class ReservaFragment extends Fragment {
         navController = Navigation.findNavController(view);
         FloatingActionButton nuevo = binding.floatingActionButton;
 
+        nuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.action_reservaFragment_to_newReserva);
+            }
+        });
 
         /*
          Preparamos el token de autorización
@@ -88,16 +96,14 @@ public class ReservaFragment extends Fragment {
         */
         if (getActivity() instanceof MenuActivity) {
             String token = (((MenuActivity) getActivity()).getToken());
-            // "Bearer " es el esquema de autentificación (estándar HTTP Authentication)
-            cargaReservas("Bearer " + token);
-        }
 
-        nuevo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navController.navigate(R.id.action_reservaFragment_to_newReserva);
+            if(token != null && !token.isEmpty()) {
+                // "Bearer " es el esquema de autentificación (estándar HTTP Authentication)
+                cargaReservas("Bearer " + token);
+            } else {
+                irLogin();
             }
-        });
+        }
 
     }
 
@@ -112,10 +118,10 @@ public class ReservaFragment extends Fragment {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 //Verificar si el fragment sigue "vivo" antes de tocar la UI
                 //Nos ayuda a que mientras las API carga, la app no crashee
-                if (!isAdded() || binding == null) return;
+                if (!isAdded() || binding == null || getContext() == null) return;
 
                 // Si la petición HTTP responde correctamente
-                if (response.isSuccessful() && response.body() != null) {
+                if (response.isSuccessful()) {
                     try {
                         // Obtenemos el JSON del servidor y lo pasamos a String
                         String datos = response.body().string();
@@ -152,26 +158,39 @@ public class ReservaFragment extends Fragment {
                             }
                         });
 
-
-                        // Imprimimos en Logcat para depuración
-                        Log.d("Reservas:", datos);
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        Log.e("API ERROR", "Error en parseo datos", e);
                     }
-                } else {
-                    // Si la respuesta no es exitosa o el body es null
-                    Toast.makeText(getContext(), "No hay datos", Toast.LENGTH_SHORT).show();
+                }else {
+                    if (response.code() == 401) {
+                        // 401 es Unauthorized, 422 es Unprocessable Entity
+                        Toast.makeText(getContext(), "Sesión expirada",
+                                Toast.LENGTH_SHORT).show();
+                        irLogin();
+                    } else {
+                        Toast.makeText(getContext(), "Error: " + response.code(),
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                // Si no pudo completar la llamada
-                Toast.makeText(getContext(), "No hay respuesta", Toast.LENGTH_SHORT).show();
+                if (isAdded() || getContext() != null) {
+                    Toast.makeText(getContext(), "No hay respuesta", Toast.LENGTH_SHORT).show();
+                }
             }
 
             ;
         });
+    }
+
+    private void irLogin(){
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        // Estas flags evitan que el usuario regrese a esta pantalla pulsando "atrás"
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        getActivity().finish(); // Finaliza la actividad actual
     }
     @Override
     public void onDestroyView() {

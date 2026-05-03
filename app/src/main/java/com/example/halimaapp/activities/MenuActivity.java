@@ -1,8 +1,14 @@
 package com.example.halimaapp.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -13,9 +19,14 @@ import com.example.halimaapp.databinding.ActivityMenuBinding;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MenuActivity extends AppCompatActivity {
 
     private String token;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +41,8 @@ public class MenuActivity extends AppCompatActivity {
         representa el activity_menu.xml
        */
 
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);//ignorar modo noche
         ActivityMenuBinding binding = ActivityMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot()); //getRoot(): Obtiene la vista
 
@@ -70,10 +83,12 @@ public class MenuActivity extends AppCompatActivity {
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_container);
         NavController navController = navHostFragment.getNavController();
-        // Retrona la funcion de navegar paara attras solo a los fragments no principales.
+        // Retrona la funcion de navegar paara atras solo a los fragments no principales.
         return navController.navigateUp() || super.onSupportNavigateUp();
     }
+
     public String getToken() {
         return token;
     }
+
 }

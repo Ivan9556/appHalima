@@ -3,7 +3,8 @@
     <style name="Base.Theme.HalimaApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="itemActiveIndicatorStyle">@null</item>
+        <!--<item name="itemActiveIndicatorStyle">@null</item>-->
+     </style>
+     <style name="Theme.HalimaApp" parent="Base.Theme.HalimaApp" />
 
-    </style>
-</resources>
+ </resources>

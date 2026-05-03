@@ -12,6 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
+import androidx.navigation.Navigation;
 
 import com.example.halimaapp.R;
 import com.example.halimaapp.activities.MenuActivity;
@@ -30,6 +33,8 @@ public class detailCardFragment extends Fragment {
         private DetailCardViewBinding binding;
         private ShareViewModel svm;
         private Servicios sv;
+        private NavController navController;
+        private NavOptions navOptions;
 
     @Nullable
     @Override
@@ -45,9 +50,12 @@ public class detailCardFragment extends Fragment {
         //Cliente
         Cliente cliente = new Cliente();
         sv = cliente.getCliente().create(Servicios.class);
-
         // Recoge la instancia del activity
-       svm = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
+        svm = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
+
+        navController = Navigation.findNavController(view);
+
+        navOptions = new NavOptions.Builder().setPopUpTo(R.id.detail_view, true).build();
 
        // Procede cambiar los textView del fragment
        svm.getRs().observe(getViewLifecycleOwner(), reserva -> {
@@ -69,9 +77,7 @@ public class detailCardFragment extends Fragment {
                    if (getActivity() instanceof MenuActivity){
                        String token = ((((MenuActivity) getActivity()).getToken()));
                        delete("Bearer " + token, id);
-                       Toast.makeText(getContext(), "TODO OKEY",
-                               Toast.LENGTH_SHORT).show();
-
+                       navController.navigate(R.id.reservaFragment, null, navOptions);
                    }
                }
            });
@@ -85,14 +91,19 @@ public class detailCardFragment extends Fragment {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Toast.makeText(getContext(), "Reserva eliminada correctamente",
-                        Toast.LENGTH_SHORT).show();
+                if(!isAdded() || binding == null ||getContext() == null) return;
+                if(response.isSuccessful()){
+                    Toast.makeText(getContext(), "Reserva eliminada correctamente",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                if(!isAdded() || binding == null || getContext() == null) return;
                 Toast.makeText(getContext(), "Reserva NO eliminada correctamente",
-                        Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT).show();
+
             }
         });
 

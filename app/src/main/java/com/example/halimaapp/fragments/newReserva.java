@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import com.example.halimaapp.R;
@@ -19,6 +20,7 @@ import com.example.halimaapp.databinding.NewReservaBinding;
 import com.example.halimaapp.network.Cliente;
 import com.example.halimaapp.network.Servicios;
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,10 +36,8 @@ public class newReserva extends Fragment {
 
     private NewReservaBinding binding;
     private Servicios servicios;
-
     private NavController navController;
-
-
+    private NavOptions navOptions;
 
 
     @Nullable
@@ -56,8 +56,9 @@ public class newReserva extends Fragment {
         servicios = cliente.getCliente().create(Servicios.class);
         Button bt = binding.button;
         navController = Navigation.findNavController(view);
-
-
+        navOptions = new NavOptions.Builder().setPopUpTo(R.id.newReserva, true).build();
+        binding.fecha1.setOnClickListener(v -> showMaterialDatePicker(binding.fecha1));
+        binding.fecha2.setOnClickListener(v -> showMaterialDatePicker(binding.fecha2));
 
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +72,9 @@ public class newReserva extends Fragment {
 
                     if(!fecha_entrada.isEmpty() && !fecha_salida.isEmpty()){
                         añadir_reserva("Bearer " + token, fechas);
-                        navController.navigate(R.id.newReserva);
+                        navController.navigate(R.id.reservaFragment, null, navOptions);
+                        Toast.makeText(getContext(),"Reserva añadida",
+                                Toast.LENGTH_SHORT).show();
 
                     }else {
                         Toast.makeText(getContext(),"No has introducido ninguna fecha",
@@ -92,19 +95,25 @@ public class newReserva extends Fragment {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Toast.makeText(getContext(),"Fechas añadidas",
-                        Toast.LENGTH_SHORT).show();
+                if(!isAdded() || binding == null || getContext() == null) return;
+                if(response.isSuccessful()){
+                    Toast.makeText(getContext(),"Fechas añadidas",
+                            Toast.LENGTH_SHORT).show();
+                }
+
 
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                if(!isAdded() || getContext() == null) return;
                 Toast.makeText(getContext(),"No se puedo añadir fecha",
-                        Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT).show();
+
             }
         });
     }
-    private void showMaterialDatePicker(){
+    private void showMaterialDatePicker(TextInputEditText fecha){
         // 1. Crear el Builder del selector de fechas
         MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
         builder.setTitleText("Selecciona una fecha");
@@ -127,8 +136,7 @@ public class newReserva extends Fragment {
 
             String fechaSeleccionada = sdf.format(new Date(seleccion));
             // Seteamos el String en el campo usando Binding
-            //binding.fSeleccionada.setText(fechaSeleccionada);
-
+            fecha.setText(fechaSeleccionada);
         });
 
     }

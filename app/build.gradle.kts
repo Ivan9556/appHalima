@@ -55,4 +55,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     //Coversor JSON
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    //Ciclo vida app
+    implementation("androidx.lifecycle:lifecycle-process:2.6.2")
+
 }
