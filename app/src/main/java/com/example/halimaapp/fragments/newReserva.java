@@ -72,7 +72,7 @@ public class newReserva extends Fragment {
 
                     if(!fecha_entrada.isEmpty() && !fecha_salida.isEmpty()){
                         añadir_reserva("Bearer " + token, fechas);
-                        navController.navigate(R.id.reservaFragment, null, navOptions);
+                        navController.popBackStack();
                         Toast.makeText(getContext(),"Reserva añadida",
                                 Toast.LENGTH_SHORT).show();
 

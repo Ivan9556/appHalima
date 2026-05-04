@@ -77,7 +77,9 @@ public class detailCardFragment extends Fragment {
                    if (getActivity() instanceof MenuActivity){
                        String token = ((((MenuActivity) getActivity()).getToken()));
                        delete("Bearer " + token, id);
-                       navController.navigate(R.id.reservaFragment, null, navOptions);
+                        navController.popBackStack();
+                       Toast.makeText(getContext(), "Reserva eliminada correctamente",
+                               Toast.LENGTH_SHORT).show();
                    }
                }
            });
