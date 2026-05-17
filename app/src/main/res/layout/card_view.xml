@@ -10,23 +10,42 @@
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="352dp"
+        android:backgroundTint="@color/blue"
         tools:ignore="MissingConstraints">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:background="@drawable/style_contenedor"
+            style="@style/contenedor_card"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/LabelText_card"
+                android:text="Nombre:  "/>
 
             <TextView
                 android:id="@+id/textNom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/ValueText_card"
                 android:layout_weight="1"
                 android:text="Nombre reserva"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/LabelText_card"
+                android:text="Apellidos:  "/>
+
             <TextView
                 android:id="@+id/textApe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="@style/ValueText_card"
                 android:layout_weight="1"
                 android:text="Apellidos reserva"/>
 

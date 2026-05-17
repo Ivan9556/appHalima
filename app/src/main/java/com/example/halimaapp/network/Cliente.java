@@ -8,7 +8,7 @@ public class Cliente {
     public  Retrofit getCliente(){
         return new Retrofit.Builder()
                 // URL Windows
-                .baseUrl("http://192.168.1.141:8000/")
+                .baseUrl("http://192.168.1.137:8000")
                 // URL Linux
                 //.baseUrl("http://192.168.1.145:8000/")
                 // URL Móvil

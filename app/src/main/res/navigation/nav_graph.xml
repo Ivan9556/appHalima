@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/reservaFragment"
         android:name="com.example.halimaapp.fragments.ReservaFragment"
-        android:label="fragment_reserva"
+        android:label="Reservas"
         tools:layout="@layout/fragment_reserva" >
         <action
             android:id="@+id/action_reservaFragment_to_detail_view"
@@ -31,12 +31,12 @@
     <fragment
         android:id="@+id/usuarioFragment"
         android:name="com.example.halimaapp.fragments.UsuarioFragment"
-        android:label="fragment_usuario"
+        android:label="Usuario"
         tools:layout="@layout/fragment_usuario" />
     <fragment
         android:id="@+id/detail_view"
         android:name="com.example.halimaapp.fragments.detailCardFragment"
-        android:label="detail_view"
+        android:label="Detalles reserva"
         tools:layout="@layout/detail_card_view" />
     <fragment
         android:id="@+id/newReserva"

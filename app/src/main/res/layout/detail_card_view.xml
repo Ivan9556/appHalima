@@ -8,62 +8,154 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="35dp"
         >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/style_contenedor"
+            style="@style/contenedor"
+            >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LabelText"
+            android:text="ID Reserva"/>
         <TextView
             android:id="@+id/id_reserva"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ValueText"
             android:text="Id Reserva"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LabelText"
+            android:text="Nombre Reserva"/>
+
         <TextView
             android:id="@+id/textNom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ValueText"
             android:text="Nombre reserva" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LabelText"
+            android:text="Apellidos reserva" />
+
         <TextView
             android:id="@+id/textApe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ValueText"
             android:text="Apellidos reserva" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LabelText"
+            android:text="Fecha Entrada"/>
+
         <TextView
             android:id="@+id/textFechaEntrada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ValueText"
             android:text="Fecha Entrada"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LabelText"
+            android:text="Fecha Salida"/>
+
         <TextView
             android:id="@+id/textFechaSalida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ValueText"
             android:text="Fecha Salida"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LabelText"
+            android:text="Numero adultos"/>
+
         <TextView
             android:id="@+id/numAdultos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ValueText"
             android:text="Numero adultos"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LabelText"
+            android:text="Numero Niños"/>
+
         <TextView
             android:id="@+id/numNinos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ValueText"
             android:text="Numero Niños"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LabelText"
+            android:text="Telefono"/>
+
         <TextView
             android:id="@+id/telefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ValueText"
             android:text="Telefono"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LabelText"
+            android:text="Correo electronico"/>
+
         <TextView
             android:id="@+id/correo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ValueText"
             android:text="Correo electronico"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LabelText"
+            android:text="Precio reserva"/>
+
         <TextView
             android:id="@+id/precioReserva"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/ValueText"
             android:text="Precio reserva"/>
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/boton_borrar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/cajas"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:text="Borrar"/>
 
 
