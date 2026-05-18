@@ -21,9 +21,10 @@
             android:text="Nombre" />
 
         <EditText
+            android:id="@+id/bloqueo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="15"
             android:background="@drawable/style_editext"
             android:text="BLOQUEO"
             />
@@ -35,9 +36,10 @@
             android:text="Apellidos" />
 
         <EditText
+            android:id="@+id/admin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="15"
             android:background="@drawable/style_editext"
             android:text="ADMIN"
             />
@@ -52,7 +54,7 @@
             android:id="@+id/fecha1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="15"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:background="@drawable/style_editext"
@@ -69,7 +71,7 @@
             android:id="@+id/fecha2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="15"
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:background="@drawable/style_editext"
@@ -82,11 +84,12 @@
             android:text="Telefono" />
 
         <EditText
+            android:id="@+id/telefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="15"
             android:background="@drawable/style_editext"
-            android:text="none"
+            android:text="0"
             />
 
         <TextView
@@ -96,11 +99,12 @@
             android:text="Correo" />
 
         <EditText
+            android:id="@+id/correo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
+            android:ems="15"
             android:background="@drawable/style_editext"
-            android:text="none"
+            android:text="admin@cuevashalima.com"
             />
     </LinearLayout>
 

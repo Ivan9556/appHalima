@@ -34,7 +34,7 @@ public interface Servicios {
     Call<ResponseBody> reservas(@Header("Authorization") String token);
 
     @POST("registrar_reserva")
-    Call<ResponseBody> nueva_reserva(@Header("Authorization") String token, @Body String[] fechas);
+    Call<ResponseBody> nueva_reserva(@Header("Authorization") String token, @Body String[] datos);
 
     @POST("borrar_reserva")
     Call<ResponseBody> borrar_reserva(@Header("Authorization") String token, @Body int id);

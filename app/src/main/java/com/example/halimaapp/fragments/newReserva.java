@@ -1,6 +1,7 @@
 package com.example.halimaapp.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -66,12 +68,21 @@ public class newReserva extends Fragment {
                 // Recuperamos el token del activity
                 if (getActivity() instanceof MenuActivity){
                     String token = ((((MenuActivity) getActivity()).getToken()));
+                    String nombre = binding.bloqueo.getText().toString();
+                    String apellidos = binding.admin.getText().toString();
                     String fecha_entrada = binding.fecha1.getText().toString();
                     String fecha_salida = binding.fecha2.getText().toString();
-                    String[] fechas = {fecha_entrada, fecha_salida};
+                    String telefono = binding.telefono.getText().toString();
+                    String correo = binding.correo.getText().toString();
+
+                    //Arrays
+                    String[] datos = {fecha_entrada, fecha_salida, nombre, apellidos,
+                            telefono, correo};
+
 
                     if(!fecha_entrada.isEmpty() && !fecha_salida.isEmpty()){
-                        añadir_reserva("Bearer " + token, fechas);
+                        añadir_reserva("Bearer " + token, datos);
+
                         navController.popBackStack();
                         Toast.makeText(getContext(),"Reserva añadida",
                                 Toast.LENGTH_SHORT).show();
@@ -90,8 +101,8 @@ public class newReserva extends Fragment {
 
     }
 
-    public void añadir_reserva(String token, String[] fechas){
-        Call<ResponseBody> call = servicios.nueva_reserva(token, fechas);
+    public void añadir_reserva(String token,String[] datos){
+        Call<ResponseBody> call = servicios.nueva_reserva(token, datos);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
