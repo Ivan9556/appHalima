@@ -11,9 +11,10 @@
         android:title="@string/title_mensajes" />
 -->
 
+<!--
     <item android:id="@+id/usuarioFragment"
         android:icon="@drawable/usuario"
         android:title="@string/title_usuario"
         />
-
+-->
 </menu>
