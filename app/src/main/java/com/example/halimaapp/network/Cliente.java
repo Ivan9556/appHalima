@@ -13,6 +13,8 @@ public class Cliente {
                 //.baseUrl("http://192.168.1.145:8000/")
                 // URL Móvil
                 //.baseUrl("http://10.96.183.31:8000/")
+                // URL Web
+                // .baseUrl("https://www.cuevashalima.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
