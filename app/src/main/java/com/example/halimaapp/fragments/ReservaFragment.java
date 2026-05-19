@@ -10,7 +10,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,9 @@ public class ReservaFragment extends Fragment {
     private Servicios servicios;
     private ShareViewModel svm;
     private NavController navController;
+
+    private SwipeRefreshLayout swipeRefreshLayout;
+
 
     public ReservaFragment() {
         // Required empty public constructor
@@ -81,6 +86,8 @@ public class ReservaFragment extends Fragment {
         svm = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
         navController = Navigation.findNavController(view);
         FloatingActionButton nuevo = binding.floatingActionButton;
+        swipeRefreshLayout = binding.swipeRefresh;
+
 
         nuevo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +95,14 @@ public class ReservaFragment extends Fragment {
                 navController.navigate(R.id.action_reservaFragment_to_newReserva);
             }
         });
+        // Escuchador para refrescar view
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refrescar();
+            }
+        });
+
 
         /*
          Preparamos el token de autorización
@@ -200,5 +215,15 @@ public class ReservaFragment extends Fragment {
         */
         super.onDestroyView();
         binding = null; // evitar fugas de memoria
+    }
+
+    private void refrescar(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Detener la animación de carga
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }, 2000);
     }
 }
